@@ -1,0 +1,60 @@
+// Variables para los colores y medidas de las líneas y textura de la libreta
+$notebook-texture-color: #f8f8f8;
+$line-color: #bfbfbf;
+$line-width: 2px;
+$line-spacing: 1cm;
+
+// Estilos del notebook
+.notebook {
+  // Textura de la libreta
+  background-color: $notebook-texture-color;
+  background-image: repeating-linear-gradient(
+    $line-color,
+    // Color de las líneas
+    $line-color $line-width,
+    // Ancho y color de la línea superior
+    transparent $line-width,
+    // Transparencia después de la línea superior
+    transparent $line-spacing // Espacio antes de la siguiente línea
+  );
+  background-size: $line-spacing $line-spacing; // Tamaño del patrón de la textura
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-family: "Permanent Marker", cursive;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 2rem auto;
+  max-width: 75vw;
+  overflow: hidden;
+  padding: 2rem;
+  position: relative;
+
+  // Líneas diagonales
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: $line-spacing;
+    bottom: $line-spacing;
+    border-top: $line-width solid $line-color; // Ancho y color de las líneas
+    z-index: -1;
+  }
+
+  &::before {
+    transform: rotate(45deg); // Rotación de la línea diagonal superior
+  }
+
+  &::after {
+    transform: rotate(-45deg); // Rotación de la línea diagonal inferior
+  }
+
+  // Estilos para los elementos internos del notebook
+  h1,
+  p {
+    margin: 0;
+  }
+}
